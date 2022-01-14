@@ -75,11 +75,14 @@
 <script>
 import TaskService from '@/services/TaskService.js'
 import TaskModal from '@/components/modal/TaskModal.vue'
+import { Toast } from '@/mixins/Toast.js'
+
 export default {
   name: 'TaskList',
   components: {
     TaskModal
   },
+  mixins: [Toast],
   data() {
     return {
       tasks: [],
@@ -115,23 +118,30 @@ export default {
     this.fetchTasks()
   },
   methods: {
-    showModal(type) {
-      this.$root.$emit('bv::show::modal', 'task-modal')
-      this.$root.$emit('taskModalType', type)
-    },
     async fetchTasks() {
       await TaskService.getTasks()
       .then( response => {
-        console.log('RESPONSE: ', response.data)
         this.tasks = response.data
       })
       .catch( error => {
         console.log('ERROR: ', error)
       })
     },
-    updateTable() {
-      this.fetchTasks(); 
-      this.$root.$emit('bv::refresh::table', 'tasksTable'); 
+    async deleteTask(value, task) {
+      if (value) {
+        await TaskService.deleteTask(task.id)
+        .then(() => {
+          this.updateTable()
+          this.makeToast('Operación exitosa!', 'La tarea sido eliminada', 'success')
+        })
+        .catch( error => {
+          this.makeToast('Error!', error, 'danger')
+        })
+      }
+    },
+    showModal(type) {
+      this.$root.$emit('bv::show::modal', 'task-modal')
+      this.$root.$emit('taskModalType', type)
     },
     showDeleteMsg(task) {
       this.boxTwo = ''
@@ -151,21 +161,11 @@ export default {
       })
       .catch(err => {
         console.log(err)
-        // An error occurred
       })
     },
-    async deleteTask(value, task) {
-      if (value) {
-        console.log('DELETE: ', task)
-        await TaskService.deleteTask(task.id)
-        .then( response => {
-          console.log('RESPONSE: ', response.data)
-          this.updateTable()
-        })
-        .catch( error => {
-          console.log('ERROR: ', error)
-        })
-      }
+    updateTable() {
+      this.fetchTasks(); 
+      this.$root.$emit('bv::refresh::table', 'tasksTable'); 
     }
   }
 }

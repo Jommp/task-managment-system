@@ -33,26 +33,25 @@ export default {
     }
   },
   created(){
-    this.$root.$on('taskModalType', (msg) => this.showMsg(msg));
+    this.$root.$on('taskModalType', (type) => this.setModal(type))
   },
   methods: {
-    showMsg(msg){
-      if (msg === 'add') {
+    setModal(type){
+      if (type === 'add') {
         this.modalTitle = 'Agregar nueva tarea'
         this.editTask = false
       } else {
-        this.modalTitle = 'Tarea: ' + msg.title
+        this.modalTitle = 'Tarea: ' + type.title
         this.editTask = true
-        this.task_id = msg.id
+        this.task_id = type.id
       }
     },
     hide() {
       this.$emit('hideModal')
     }
-  },
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
 </style>

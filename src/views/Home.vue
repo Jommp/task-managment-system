@@ -19,6 +19,8 @@
       <li>Conexión con API proporcionada</li>
       <li>Buscar tarea en la lista de tareas</li>
       <li>Filtrar tareas en la lista de tareas</li>
+      <li>Agregar paginación en la lista de tareas</li>
+      <li>Cambiar estatus de tarea desde la lista de tareas</li>
       <li>Mejoras en pantallas menores a 768px</li>
     </ul>
   </div>
@@ -31,8 +33,8 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
-    font-size: 2.6rem;
-    font-weight: 700;
-  }
+h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
 </style>

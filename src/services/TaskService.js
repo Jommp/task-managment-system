@@ -28,7 +28,6 @@ export default {
       }
     })
   },
-
   getTask(task_id) {
     return apiClient.get(`tasks/${task_id}`,{
       headers: {

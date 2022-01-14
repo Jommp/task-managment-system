@@ -16,7 +16,6 @@
 import MainNav from '@/components/layout/MainNav.vue'
 import SideNav from '@/components/layout/SideNav.vue'
 
-
 export default {
   name: 'App',
   components: {
@@ -36,7 +35,7 @@ body {
 }
 
 main {
-  padding: 0px 15px;
+  padding: 16px;
 }
 
 @media (min-width: 768px) {

@@ -3,9 +3,9 @@
     variant="dark"
   >
     <b-navbar-nav class="d-md-none">
-      <button class="menu-btn">
+      <b-button class="menu-btn">
         <b-icon icon="list" />
-      </button>
+      </b-button>
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto align-items-center">
       <div class="user-information d-flex align-items-center">
@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'MainNav'
-  }
+export default {
+  name: 'MainNav'
+}
 </script>
 
 <style scoped>
@@ -32,32 +32,11 @@ nav  {
   border: none;
   border-radius: 5px;
   color: #FFFFFF;
-  background-color: #4ea0a3 !important;
-}
-.icon {
-  height: 16.67px;
-  width: 16.67px;
-}
-.icon:hover {
-  cursor: pointer;
-}
-.icon:first-child {
-  margin-right: 18px;
-}
-.icon:last-child {
-  margin-left: 14px;
-  margin-right: 32px;
 }
 .user-information {
   border-left: 1px solid rgba(255, 255, 255, .32);
   height: 48px;
   padding-left: 20px;
-}
-.user-information img {
-  border-radius: 50%;
-  height: 40px;
-  margin-right: 8px;
-  width: 40px;
 }
 .user-information div p {
   color: #FFFFFF;
@@ -66,14 +45,7 @@ nav  {
   margin: 0
 }
 
-@media (min-width: 768px) {  
-  .icon:first-child {
-    margin-right: 36px;
-  }
-  .icon:last-child {
-    margin-left: 28px;
-    margin-right: 64px;
-  }
+@media (min-width: 768px) {
   .user-information {
     padding-left: 40px;
   }

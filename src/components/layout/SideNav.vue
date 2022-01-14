@@ -22,11 +22,11 @@
         :key="index" 
         :to="{ name: link.link }" 
       >
-          <b-icon 
-            :icon="link.icon" 
-            variant="dark"
-          /> 
-          {{ link.name }}
+        <b-icon 
+          :icon="link.icon" 
+          variant="dark"
+        /> 
+        {{ link.name }}
       </b-nav-item>
     </b-nav>
 
@@ -39,34 +39,32 @@
           variant="dark"
         />
       </div>
-
       <hr>
-
       <p class="text-center">© Copyright Nextline 2022</p>
     </template>
   </b-sidebar>
 </template>
 
 <script>
-  export default {
-    name: 'SideNav',
-    data() {
-      return {
-        links: [
-          {
-            name: 'Inicio',
-            icon: 'house',
-            link: 'home'
-          },
-          {
-            name: 'Tareas',
-            icon: 'journal',
-            link: 'tasks'
-          },
-        ]
-      }
-    },
+export default {
+  name: 'SideNav',
+  data() {
+    return {
+      links: [
+        {
+          name: 'Inicio',
+          icon: 'house',
+          link: 'home'
+        },
+        {
+          name: 'Tareas',
+          icon: 'journal',
+          link: 'tasks'
+        }
+      ]
+    }
   }
+}
 </script>
 
 <style>
@@ -89,7 +87,6 @@
 .nav-item:last-child {
   border: none;
 }
-
 .nav-link {
   color: #323232 !important;
   height: 100%;
@@ -104,7 +101,6 @@
 .nav-link span {
   width: 100%;
 }
-
 .help-container {
   background: var(--primary-gray);
   border-radius: 4px;
@@ -136,7 +132,6 @@
   border: 1px solid var(--primary-gray);
   width: 224px;
 }
-
 .b-sidebar .b-sidebar-footer p {
   font-size: 12px;
 }

@@ -44,6 +44,7 @@
               v-model="form.due_date" 
               placeholder="Seleccione una fecha"
               :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+              :min="minDate"
             />
           </div>
         </b-col>
@@ -80,17 +81,11 @@
         label="Etiquetas" 
         label-for="input-tags"
       >
-         <b-form-input
-          id="input-title"
-          v-model="form.tags"
-          type="text"
-          placeholder="Agregue una etiqueta"
-        ></b-form-input>
-        <!-- <b-form-tags 
+        <b-form-tags 
           input-id="input-tags" 
           v-model="form.tags"
-          placeholder="Escriba y presione enter para agregar una etiqueta"
-        ></b-form-tags> -->
+          placeholder="Escriba y presione enter para agregar etiqueta"
+        ></b-form-tags>
       </b-form-group>
 
       <div class="d-flex justify-content-between mt-4">
@@ -123,6 +118,7 @@
 
 <script>
 import TaskService from '@/services/TaskService.js'
+import { Toast } from '@/mixins/Toast.js'
 
 export default {
   name: 'TaskForm',
@@ -136,6 +132,7 @@ export default {
       requried: false
     }
   },
+  mixins: [Toast],
   data() {
     return {
       form: {
@@ -144,7 +141,7 @@ export default {
         due_date: '',
         comments: '',
         description: '',
-        tags: ''
+        tags: []
       },
       show: true,
       loading: false
@@ -155,7 +152,46 @@ export default {
       this.fetchTask(this.taskId)
     }
   },
+  computed: {
+    minDate(){
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      return today
+    }
+  },
   methods: {
+    async postTask() {
+      await TaskService.postTask(this.form)
+      .then( () => {
+        this.makeToast('Operación exitosa!', 'La tarea sido creada exitosamente', 'success')
+        this.loading = false
+        this.onReset()
+      })
+      .catch(error => {
+        this.makeToast('Error!', error, 'danger')
+        this.loading = false
+      })
+    },
+    async putTask() {
+      await TaskService.putTask(this.form)
+      .then( () => {
+        this.makeToast('Operación exitosa!', 'La tarea ha sido actualizada', 'success')
+        this.loading = false
+      })
+      .catch(error => {
+        this.makeToast('Error!', error, 'danger')
+        this.loading = false
+      })
+    },
+    async fetchTask(id) {
+      await TaskService.getTask(id)
+      .then( response => {
+        this.form = response.data
+      })
+      .catch(error => {
+        console.log('ERROR: ', error)
+      })
+    },
     onSubmit(event) {
       event.preventDefault()
       this.loading = true
@@ -181,51 +217,11 @@ export default {
       this.$nextTick(() => {
         this.show = true
       })
-    },
-    async postTask() {
-      await TaskService.postTask(this.form).then( response => {
-        if (response.status === 201) {
-          this.makeToast('Operación exitosa!', response.data.detail, 'success')
-          this.loading = false
-          this.onReset()
-        } else {
-          this.makeToast('Error!', response.data.detail, 'danger')
-          this.loading = false
-        }
-      })
-    },
-    async putTask() {
-      await TaskService.putTask(this.form)
-      .then( response => {
-        this.makeToast('Operación exitosa!', response.data.detail, 'success')
-        this.loading = false
-      })
-      .catch(error => {
-        this.makeToast('Error!', error, 'danger')
-        this.loading = false
-      })
-    },
-    async fetchTask(id) {
-      await TaskService.getTask(id)
-      .then( response => {
-        console.log('RESPONSEFROMFORM: ', response.data)
-        this.form = response.data
-      })
-      .catch(error => {
-        console.log('ERROR: ', error)
-      })
-    },
-    makeToast(toast_title, toast_body, toast_variant = null, ) {
-      this.$bvToast.toast(toast_body, {
-        title: `${toast_title}`,
-        variant: toast_variant,
-        solid: true
-      })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

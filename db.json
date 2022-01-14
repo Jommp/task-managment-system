@@ -2,65 +2,33 @@
   "tasks": [
     {
       "id": 0,
-      "comments": "Comprar leche",
+      "comments": "Ir al supermercado por la despensa que ya se esta agotando",
       "created_at": "2022-01-10 22:23:50",
-      "description": "Ir al supermercado por la despensa",
-      "due_date": "2022-01-10",
+      "description": "Comprar:\n- Leche\n- Cereal\n- Detergente\n- Papel",
+      "due_date": "2022-01-15",
       "task_id": 1,
       "is_completed": 0,
-      "tags": "Compras",
+      "tags": [
+        "Hogar"
+      ],
       "title": "Ir al supermercado",
       "token": "",
       "updated_at": "2022-01-10 22:23:50"
     },
     {
-      "id": 2,
-      "comments": "Tarea para realizar pruebas",
-      "created_at": "2022-01-13",
-      "description": "Esta tarea es para realizar diferentes pruebas",
-      "due_date": "2022-01-12",
-      "task_id": 3,
-      "is_completed": 0,
-      "tags": "Pruebas",
-      "title": "Comprar zanahorias",
-      "token": "",
-      "updated_at": ""
-    },
-    {
-      "id": 3,
-      "comments": "Tarea para realizar pruebas",
-      "created_at": "2022-01-13",
-      "description": "Esta tarea es para realizar diferentes pruebas",
-      "due_date": "2022-01-13",
-      "task_id": 4,
-      "is_completed": 0,
-      "tags": "Pruebas",
-      "title": "Comprar resistol",
-      "token": "",
-      "updated_at": ""
-    },
-    {
       "id": 4,
-      "comments": "Tarea para realizar pruebas",
+      "comments": "Sacar la basura a las 7:00 P.M.",
       "created_at": "2022-01-14",
-      "description": "Esta tarea es para realizar diferentes pruebas",
+      "description": "Se debe sacar la basura, de lo contario se va a acumular hasta que vuelva a pasar el camión",
       "due_date": "2022-01-14",
       "task_id": 5,
       "is_completed": 0,
-      "tags": "Pruebas",
+      "tags": [
+        "Hogar"
+      ],
       "title": "Sacar la basura",
       "token": "",
       "updated_at": ""
-    },
-    {
-      "title": "Nueva tarea",
-      "is_completed": 0,
-      "due_date": "2022-01-15",
-      "comments": "",
-      "description": "",
-      "tags": "",
-      "token": "e864a0c9eda63181d7d65bc73e61e3dc6b74ef9b82f7049f1fc7d9fc8f29706025bd271d1ee1822b15d654a84e1a0997b973a46f923cc9977b3fcbb064179ecd",
-      "id": 5
     }
   ]
 }
