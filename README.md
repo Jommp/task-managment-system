@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-git clone https://github.com/Jommp/gli-app-test.git
+git clone https://github.com/Jommp/task-managment-system.git
 ```
 ```
 npm install
